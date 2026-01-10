@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Portfolio Project
 
-## Getting Started
+Hi, I’m **Tanmay Sinha**, a Computer Science undergraduate with a strong interest in **frontend engineering and modern web development**.  
+I enjoy building clean, performant user interfaces and structuring applications the way they are built in real production environments.
 
-First, run the development server:
+This project is part of my personal portfolio and reflects how I approach **code quality, scalability, and developer experience** using Next.js.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧠 About This Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This portfolio project is built using **Next.js (App Router)** to demonstrate:
+- Practical understanding of modern React and Next.js concepts
+- Clean and maintainable project structure
+- Performance-oriented rendering decisions
+- Industry-standard frontend development practices
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [inter](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** CSS Modules / Tailwind CSS
+- **Fonts:** `next/font` (Inter)
+- **Runtime:** Node.js
+- **Deployment:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```txt
+.
+├── app/
+│   ├── page.tsx          # Home page
+│   ├── layout.tsx        # Root layout
+│   ├── globals.css       # Global styles
+│   └── loading.tsx       # Route loading state
+├── components/           # Reusable UI components
+├── lib/                  # Utilities & helpers
+├── public/               # Static assets
+├── styles/               # Styling configuration
+├── next.config.js
+├── package.json
+└── README.md
