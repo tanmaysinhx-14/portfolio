@@ -1,3 +1,5 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,9 +12,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: {
+    default: "Portfolio",
+    template: "%s | Tanmay",
+  },
   description: "Portfolio - Tanmay",
 };
+
 
 export default function RootLayout({
   children,
@@ -21,10 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Header/>
+      <body className={`${inter.variable} font-sans`}>
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
