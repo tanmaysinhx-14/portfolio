@@ -63,7 +63,7 @@ function Button({
       data-size={size}
       href={href}
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
+      {...(props as any)}
     />
   )
 }
