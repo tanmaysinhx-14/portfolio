@@ -34,17 +34,31 @@ const Education = () => {
               <div className="hidden sm:flex absolute left-5 sm:left-[15.9rem] sm:translate-x-1/2 top-0 bottom-0 w-px bg-primary/10" />
 
               <div className="relative">
-                {educationData?.map((item:any, index:any) => (
-                  <div key={index}
-                       className={`relative flex flex-col sm:flex-row sm:items-start gap-4 ${index !== educationData.length - 1 ? "mb-8 sm:mb-16" : ""}`}>
+                {educationData?.map((item: any, index: any) => (
+                  <div
+                    key={index}
+                    className={`relative flex flex-col sm:flex-row sm:items-start gap-4 ${
+                      index !== educationData.length - 1 ? "mb-8 sm:mb-16" : ""
+                    }`}
+                  >
                     <div className="relative pl-8 sm:pl-0 sm:w-64 sm:text-right sm:pr-16">
-                      <p className="ml-2.5 sm:ml-0 text-base font-normal sm:mb-0 leading-relaxed">
-                        {item.date}
+                      <p className="ml-2.5 sm:ml-0 text-base font-normal leading-relaxed">
+                        {item.startYear} – {item.endYear}
                       </p>
 
-                      {/* Bullet Point */}
-                      <div className="absolute left-1.5 sm:left-auto sm:-right-3 top-0 z-10 p-1.5 border border-primary/10 rounded-full bg-white">
-                        <div className="w-3 h-3 bg-primary rounded-full" />
+                      <div className="absolute left-1.5 sm:left-auto sm:-right-3 top-0 z-10 p-1.5 border border-primary/10 rounded-full bg-white overflow-visible">
+                        {(item.endYear === "Present") ? (
+                          <span className="relative flex w-4 h-4 items-center justify-center">
+                            <span className="absolute w-4 h-4 rounded-full bg-primary/40 animate-ping" />
+
+                            <span className="relative w-2.5 h-2.5 rounded-full bg-primary" />
+                          </span>
+                        ) : (
+                          <span className="relative flex w-4 h-4 items-center justify-center">
+                            <span className="w-2.5 h-2.5 rounded-full bg-primary/30" />
+                          </span>
+                        )}
+
                       </div>
                     </div>
 
@@ -55,6 +69,7 @@ const Education = () => {
                   </div>
                 ))}
               </div>
+
             </div>
           </div>
         </div>

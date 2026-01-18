@@ -40,8 +40,16 @@ const Experience = () => {
                     <div className="flex flex-wrap gap-5 items-center justify-between">
                       <h5>{value?.role}</h5>
                       <div className="flex items-center gap-2.5 border border-primary/10 rounded-lg py-1.5 px-3">
-                        <div className={`w-4 h-2 rounded-sm ${value?.endYear == "Present" ? 'bg-primary' : 'bg-primary/10'} `} />
-                        <p className="text-sm xs:text-base text-primary">{value?.startYear} – {value?.endYear} · {value?.location}</p>
+                        {value?.endYear === "Present" ? (
+                          <span className="relative flex w-4 h-4 overflow-visible items-center justify-center">
+                            <span className="absolute w-3.5 h-3.5 rounded-full bg-primary/40 animate-ping" />
+                            <span className="relative w-2.5 h-2.5 rounded-full bg-primary" />
+                          </span>
+                        ) : (
+                          <span className="w-2 h-2 rounded-full bg-primary/20" />
+                        )}
+                        
+                        <p className="text-sm xs:text-base text-primary">{value?.startYear} – {value?.endYear}</p>
                       </div>
                     </div>
                     <ul>

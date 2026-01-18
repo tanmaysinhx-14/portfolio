@@ -1,10 +1,10 @@
-import Divider from "./components/divider"
-import AboutMe from "./components/home/about-me"
-import Education from "./components/home/education"
-import Experience from "./components/home/experience"
-import FeaturedWork from "./components/home/featured-work"
-import HeroSection from "./components/home/hero-section"
-import UserOverview from "./components/home/user-overview"
+import Divider from "../components/ui/divider"
+import AboutMe from "./components/about-me"
+import Education from "./components/education"
+import Experience from "./components/experience"
+import FeaturedWork from "./components/featured-work"
+import HeroSection from "./components/hero-section"
+import CommunicationMethods from "./components/communication-methods"
 
 const page = () => {
   return (
@@ -19,7 +19,7 @@ const page = () => {
       <Divider/>
       <Education/>
       <Divider/>
-      <UserOverview/>
+      <CommunicationMethods/>
       <Divider/>
     </main>
   )

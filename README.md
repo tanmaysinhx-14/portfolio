@@ -1,4 +1,4 @@
-# Next.js Portfolio Project
+# 📃 Next.js Portfolio Project
 
 Hi, I’m **Tanmay Sinha**, a Computer Science undergraduate with a strong interest in **frontend engineering and modern web development**.  
 I enjoy building clean, performant user interfaces and structuring applications the way they are built in real production environments.
@@ -7,7 +7,7 @@ This project is part of my personal portfolio and reflects how I approach **code
 
 ---
 
-## 🧠 About This Project
+## ℹ️ About This Project
 
 This portfolio project is built using **Next.js (App Router)** to demonstrate:
 - Practical understanding of modern React and Next.js concepts
@@ -31,7 +31,6 @@ This portfolio project is built using **Next.js (App Router)** to demonstrate:
 ## 📁 Project Structure
 
 ```txt
-.
 ├── app/
 │   ├── page.tsx          # Home page
 │   ├── layout.tsx        # Root layout
