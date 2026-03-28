@@ -1,26 +1,28 @@
-import Image from "next/image"
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="-translate-y-[1px] bg-white border-t border-primary/10">
-      <div className="container">
-        <div className="border-x border-primary/10">
-          <div className="flex items-center justify-center gap-2 max-w-3xl mx-auto px-4 sm:px-7 py-4 md:py-7">
-            <p>{currentYear} — Made with</p>
-            <Image
-              src="/images/icon/heart-icon.svg"
-              alt="heart-icon"
-              width={18}
-              height={18}
-            />
-            <p>by Tanmay</p>
+    <footer className="footer-shell">
+      <div className="container portfolio-container">
+        <div className="panel-frame">
+          <div className="section-content py-4">
+            <div className="d-flex flex-wrap align-items-center justify-content-center gap-2 footer-copy text-center">
+              <p className="mb-0">{currentYear} - Made with</p>
+              <Image
+                src="/images/icon/heart-icon.svg"
+                alt="heart icon"
+                width={18}
+                height={18}
+              />
+              <p className="mb-0">by Tanmay</p>
+            </div>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

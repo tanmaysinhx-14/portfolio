@@ -10,6 +10,13 @@ type FeatureWorkItem = {
 
 const featureWork: FeatureWorkItem[] = [
   {
+    title: "AIProctor – Vision-Based Proctoring System",
+    description: "Developed a real-time AI proctoring system with gaze tracking, object detection, and risk analysis.",
+    link: "https://github.com/tanmaysinhx-14/AIProctor", // update if different
+    techStack: ["Python", "OpenCV", "PyTorch", "YOLO", "FastAPI"],
+    image: "/images/feature-work/aiproctor-img.png" // update if needed
+  },
+  {
     title: "Career Institute's Website",
     description: "Made for performance and clean UI/UX design, powered by Bootstrap and Landkit Themes.",
     link: "https://github.com/tanmaysinhx-14/career-institute",

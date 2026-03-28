@@ -1,81 +1,111 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
+type EducationItem = {
+  endYear: string;
+  startYear: string;
+  subtitle: string;
+  title: string;
+};
+
+type PageDataResponse = {
+  educationData?: EducationItem[];
+};
+
 const Education = () => {
-  const [educationData, setEducationData] = useState<any>(null);
-  
+  const [educationData, setEducationData] = useState<EducationItem[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
+    let isMounted = true;
+
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/page-data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setEducationData(data?.educationData)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      }
-    }
+        const res = await fetch("/api/page-data");
 
-    fetchData()
-  }, [])
-  
+        if (!res.ok) {
+          throw new Error("Failed to fetch");
+        }
+
+        const data = (await res.json()) as PageDataResponse;
+
+        if (!isMounted) {
+          return;
+        }
+
+        setEducationData(
+          Array.isArray(data.educationData) ? data.educationData : [],
+        );
+      } catch (error) {
+        console.error("Error fetching education:", error);
+        if (isMounted) {
+          setEducationData([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoaded(true);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <section>
-      <div className="container">
-        <div className="border-x border-primary/10">
-          <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
-            <div className="flex flex-col xs:flex-row gap-5 items-center justify-between">
-              <p className="text-sm tracking-[2px] text-primary uppercase font-medium">Education</p>
-            </div>
-          </div>
+      <div className="container portfolio-container">
+        <div className="panel-frame">
+          <div className="section-content">
+            <p className="section-heading section-heading-spaced">Education</p>
 
-          <div className="border-t border-primary/10">
-            <div className="relative max-w-3xl mx-auto px-4 sm:px-0 py-10">
-              <div className="hidden sm:flex absolute left-5 sm:left-[15.9rem] sm:translate-x-1/2 top-0 bottom-0 w-px bg-primary/10" />
+            <div className="education-timeline">
+              {educationData.map((item) => {
+                const period =
+                  item.startYear === ""
+                    ? item.endYear
+                    : `${item.startYear} - ${item.endYear}`;
 
-              <div className="relative">
-                {educationData?.map((item: any, index: any) => (
+                return (
                   <div
-                    key={index}
-                    className={`relative flex flex-col sm:flex-row sm:items-start gap-4 ${
-                      index !== educationData.length - 1 ? "mb-8 sm:mb-16" : ""
-                    }`}
+                    key={`${item.title}-${item.startYear}-${item.endYear}`}
+                    className="education-item row g-3 align-items-start"
                   >
-                    <div className="relative pl-8 sm:pl-0 sm:w-64 sm:text-right sm:pr-16">
-                      <p className="ml-2.5 sm:ml-0 text-base font-normal leading-relaxed">
-                        {item.startYear} – {item.endYear}
-                      </p>
+                    <span
+                      className={`timeline-marker ${
+                        item.endYear === "Present" ? "is-live" : ""
+                      }`}
+                    />
 
-                      <div className="absolute left-1.5 sm:left-auto sm:-right-3 top-0 z-10 p-1.5 border border-primary/10 rounded-full bg-white overflow-visible">
-                        {(item.endYear === "Present") ? (
-                          <span className="relative flex w-4 h-4 items-center justify-center">
-                            <span className="absolute w-4 h-4 rounded-full bg-primary/40 animate-ping" />
+                    <div className="col-12 col-sm-auto timeline-date-col">
+                      <p className="mb-0 timeline-date">{period}</p>
+                    </div>
 
-                            <span className="relative w-2.5 h-2.5 rounded-full bg-primary" />
-                          </span>
-                        ) : (
-                          <span className="relative flex w-4 h-4 items-center justify-center">
-                            <span className="w-2.5 h-2.5 rounded-full bg-primary/30" />
-                          </span>
-                        )}
-
+                    <div className="col timeline-content-col">
+                      <div className="d-flex flex-column gap-2">
+                        <h5 className="mb-0 fw-semibold">{item.title}</h5>
+                        <p className="mb-0 education-subtitle">{item.subtitle}</p>
                       </div>
                     </div>
-
-                    <div className="flex flex-col gap-2 flex-1 sm:pl-16 ml-2 sm:ml-0">
-                      <h5 className="font-semibold">{item.title}</h5>
-                      <p className="text-primary">{item.subtitle}</p>
-                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
 
+              {isLoaded && educationData.length === 0 ? (
+                <p className="mb-0 timeline-date">
+                  Education details are currently unavailable.
+                </p>
+              ) : null}
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Education
+export default Education;

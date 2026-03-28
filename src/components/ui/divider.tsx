@@ -1,10 +1,9 @@
-
 const Divider = () => {
-    return (
-        <div className="container">
-            <div className="h-4 border border-primary/10" />
-        </div>
-    )
-}
+  return (
+    <div className="container portfolio-container">
+      <div className="panel-divider" />
+    </div>
+  );
+};
 
-export default Divider
+export default Divider;

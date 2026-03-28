@@ -1,67 +1,100 @@
 "use client";
-import Image from "next/image"
+
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type ExperienceIcon = {
+  label: string;
+  src: string;
+};
+
+type ExperienceItem = {
+  bulletPoints: string[];
+  endYear: string;
+  icon?: string;
+  icons?: ExperienceIcon[];
+  role: string;
+  startYear: string;
+};
+
 const Experience = () => {
-  const [experienceData, setExperienceData] = useState<any>(null);
+  const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/page-data')
-        if (!res.ok) throw new Error('Failed to fetch')
-        const data = await res.json()
-        setExperienceData(data?.experienceData)
-      } catch (error) {
-        console.error('Error fetching services:', error)
-      }
-    }
+        const res = await fetch("/api/page-data");
 
-      fetchData()
-  }, [])
+        if (!res.ok) {
+          throw new Error("Failed to fetch");
+        }
+
+        const data = await res.json();
+        setExperienceData(data?.experienceData ?? []);
+      } catch (error) {
+        console.error("Error fetching experience:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section>
-      <div className="container">
-        <div className="border-x border-primary/10">
-          <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
-            <div className="flex flex-col xs:flex-row gap-5 items-center justify-between">
-              <p className="text-sm tracking-[2px] text-primary uppercase font-medium">Experience</p>
-            </div>
-          </div>
-          <div className="border-t border-primary/10">
-            <div className="flex flex-col max-w-3xl mx-auto px-4 sm:px-7 py-9 md:py-16 ">
-              {experienceData?.map((value: any, index: any) => {
+      <div className="container portfolio-container">
+        <div className="panel-frame">
+          <div className="section-content">
+            <p className="section-heading section-heading-spaced">Experience</p>
+
+            <div>
+              {experienceData.map((value, index) => {
+                const stackIcons = value.icons?.length
+                  ? value.icons
+                  : value.icon
+                    ? [{ label: value.role, src: value.icon }]
+                    : [];
+
                 return (
-                  <div
-                    key={index}
-                    className="flex flex-col gap-5 border-dashed border-b border-primary/10 last:border-b-0 pt-8 sm:pt-10 pb-8 sm:pb-10 first:pt-0 last:pb-0">
-                    <Image src={value?.icon} alt="icon" width={50} height={50} />
-                    <div className="flex flex-wrap gap-5 items-center justify-between">
-                      <h5>{value?.role}</h5>
-                      <div className="flex items-center gap-2.5 border border-primary/10 rounded-lg py-1.5 px-3">
-                        {value?.endYear === "Present" ? (
-                          <span className="relative flex w-4 h-4 overflow-visible items-center justify-center">
-                            <span className="absolute w-3.5 h-3.5 rounded-full bg-primary/40 animate-ping" />
-                            <span className="relative w-2.5 h-2.5 rounded-full bg-primary" />
-                          </span>
-                        ) : (
-                          <span className="w-2 h-2 rounded-full bg-primary/20" />
-                        )}
-                        
-                        <p className="text-sm xs:text-base text-primary">{value?.startYear} – {value?.endYear}</p>
+                  <div key={`${value.role}-${index}`} className="experience-item">
+                    <div className="d-flex flex-column flex-lg-row align-items-start justify-content-between gap-4 mb-4">
+                      <div className="experience-icon-group">
+                        {stackIcons.map((icon) => (
+                          <div
+                            key={`${value.role}-${icon.label}`}
+                            title={icon.label}
+                            aria-label={icon.label}
+                          >
+                            <Image
+                              src={icon.src}
+                              alt={icon.label}
+                              width={50}
+                              height={50}
+                              className="experience-icon-image rounded-1"
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="period-badge">
+                        <span
+                          className={`status-dot ${
+                            value.endYear === "Present" ? "status-dot-live" : ""
+                          }`}
+                        />
+                        <span>
+                          {value.startYear} - {value.endYear}
+                        </span>
                       </div>
                     </div>
-                    <ul>
-                      {value?.bulletPoints?.map((point: any, index: any) => {
-                        return (
-                          <li key={index}
-                              className="flex items-start gap-2 text-base font-normal text-secondary">
-                            <span className="w-2.5 h-2.5 text-secondary">•</span>
-                            {point}
-                          </li>
-                        );
-                      })}
+
+                    <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3 mb-4">
+                      <h5 className="mb-0">{value.role}</h5>
+                    </div>
+
+                    <ul className="bullet-list">
+                      {value.bulletPoints?.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
                     </ul>
                   </div>
                 );
@@ -71,7 +104,7 @@ const Experience = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Experience
+export default Experience;

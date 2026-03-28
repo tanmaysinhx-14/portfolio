@@ -1,19 +1,26 @@
-"use client"
+"use client";
 
-import Image from "next/image"
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
-import { useState, useEffect } from "react";
+type HeroSocialIcon = {
+  href: string;
+  icon: string;
+  label: string;
+};
 
 const HeroSection = () => {
-  const [heroSocialIcon, setHeroSocialIcon] = useState<any[]>([]);
-  
+  const [heroSocialIcon, setHeroSocialIcon] = useState<HeroSocialIcon[]>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/page-data");
-        if (!res.ok) throw new Error("Failed to fetch hero data");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch hero data");
+        }
 
         const data = await res.json();
         setHeroSocialIcon(data?.heroSocialIcon ?? []);
@@ -27,79 +34,96 @@ const HeroSection = () => {
 
   return (
     <section>
-      <div className="container">
-        <div className="">
-          <div className="w-full h-72">
-            <Image src={"/images/hero-sec/banner.png"} 
-                   alt="banner-img" 
-                   width={1080} 
-                   height={267} 
-                   className="w-full h-full object-cover" />
-          </div>
-          <div className="border-x border-primary/10">
-            <div className="relative flex flex-col xs:flex-row items-center xs:items-start justify-center xs:justify-between max-w-3xl mx-auto gap-10 xs:gap-3 px-4 sm:px-7 pt-22 pb-8 sm:pb-12">
-              <div className="absolute top-0 transform -translate-y-1/2">
-                <Image src={"/images/hero-sec/user.jpg"} 
-                       alt="user-img" 
-                       width={150} 
-                       height={150} 
-                       className="border-4 border-white rounded-full object-cover" />
-                <span className="absolute bottom-2.5 right-5 w-4 h-4 bg-green-500 border-2 border-white rounded-full" />
-              </div>
-              <div className="flex flex-col gap-2 sm:gap-3 items-center text-center xs:items-start">
-                <h1 className="font-bold">Tanmay</h1>
-                <p className="text-violet-700 font-normal">Exploring. Learning. Creating. ✨</p>
-                <div className="flex items-center gap-2 pt-5">
-                  <Image src={"/images/icon/educap-icon.svg"} 
-                         alt="map-icon" 
-                         width={20} 
-                         height={20} />
-                  <p className="text-primary">SRM Ramapuram</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Image src={"/images/icon/map-icon.svg"} 
-                         alt="map-icon" 
-                         width={20} 
-                         height={20} />
-                  <p className="text-primary">Chennai, India</p>
-                </div>
-              </div>
-              <div className="flex flex-col md:flex-row items-center gap-4">
-                <div className="flex items-center gap-2">
-                  {heroSocialIcon.map((item: any, index: number) => (
-                    <Link key={index}
-                          href={item.href}
-                          target="_blank"
-                          className="p-1.5 hover:bg-primary/5 border border-primary/10 rounded-full transition-colors"
-                          aria-label={item.label}>
-                      <Image src={item.icon}
-                             alt={item.label}
-                             width={30}
-                             height={30} />
-                    </Link>
-                  ))}
-                </div>
-                <Button asChild
-                        className="h-auto p-0 rounded-full">
-                  <Link href="mailto:mail.tanmaysinha@gmail.com"
-                        className="inline-flex items-center gap-3 rounded-full bg-primary px-4 py-2 transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                    <Image src="/images/icon/mail-icon.svg"
-                           alt="mail icon"
-                           width={20}
-                           height={20} />
-                    <span className="text-sm font-semibold text-white">
-                      Get in touch
-                    </span>
-                  </Link>
-                </Button>
+      <div className="container portfolio-container">
+        <div className="hero-banner">
+          <Image
+            src="/images/hero-sec/banner.png"
+            alt="banner"
+            width={1080}
+            height={267}
+            className="w-100"
+          />
+        </div>
 
+        <div className="panel-frame hero-panel">
+          <div className="section-content hero-card">
+            <div className="hero-avatar-wrap">
+              <Image
+                src="/images/hero-sec/user.jpg"
+                alt="Tanmay"
+                width={150}
+                height={150}
+                className="hero-avatar rounded-circle"
+              />
+              <span className="hero-status" />
+            </div>
+
+            <div className="row mt-1 g-4 align-items-start justify-content-between">
+              <div className="col col-md-auto">
+                <div className="d-flex flex-column gap-4 align-items-center align-items-sm-start text-center text-sm-start">
+                  <div className="d-flex flex-column gap-2">
+                    <h1 className="mb-0">Tanmay</h1>
+                    <p className="mb-0 hero-tagline">Exploring. Learning. Creating. ✨</p>
+                  </div>
+
+                  <div className="d-flex flex-column gap-2">
+                    <div className="hero-meta">
+                      <Image
+                        src="/images/icon/educap-icon.svg"
+                        alt="education"
+                        width={20}
+                        height={20}
+                      />
+                      <p className="mb-0">SRM Ramapuram</p>
+                    </div>
+
+                    <div className="hero-meta">
+                      <Image
+                        src="/images/icon/map-icon.svg"
+                        alt="location"
+                        width={20}
+                        height={20}
+                      />
+                      <p className="mb-0">Chennai, India</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-sm col-md-auto">
+                <div className="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-end gap-3">
+                  <div className="d-flex flex-wrap justify-content-center justify-content-lg-end gap-2 p-0">
+                    {heroSocialIcon.map((item) => (
+                      <Link
+                        key={`${item.label}-${item.href}`}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`icon-button ${
+                          item.label === "Email"
+                            ? "btn bg-dark p-2"
+                            : "btn btn-outline-dark p-1"
+                        }`}
+                        aria-label={item.label}
+                        title={item.label}
+                      >
+                        <Image
+                          src={item.icon}
+                          alt={item.label}
+                          width={50}
+                          height={50}
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

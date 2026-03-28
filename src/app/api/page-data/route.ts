@@ -9,16 +9,29 @@ const heroSocialIcon = [
   {
     icon: "/images/icon/linkedin-icon.svg",
     href: "https://linkedin.com/in/tanmaysinhx14",
-    label: "Github"
+    label: "LinkedIn"
   },
   {
     icon: "/images/icon/leetcode-icon.svg",
     href: "https://leetcode.com/u/tanmaysinhx14/",
     label: "Leetcode"
+  },
+  {
+    icon: "/images/icon/mail-icon.svg",
+    href: "mailto:mail.tanmaysinha@gmail.com",
+    label: "Email"
   }
 ]
 
 const activeDomains = [
+  {
+    title: "Computer Vision (OpenCV, MediaPipe)",
+    description: null
+  },
+  {
+    title: "Machine Learning & Deep Learning (PyTorch)",
+    description: null
+  },
   {
     title: "Web Applications using Typescript",
     description: null
@@ -46,7 +59,12 @@ const coreExpertise = [
 
 const experienceData = [
   {
-    icon: "/images/icon/bootstrap-icon.svg",
+    icons: [
+      {
+        src: "/images/icon/bootstrap-icon.svg",
+        label: "Bootstrap 5"
+      }
+    ],
     role: "UI/UX Designing using Bootstrap 5",
     startYear: "2019",
     endYear: "2024",
@@ -57,7 +75,16 @@ const experienceData = [
     ]
   },
   {
-    icon: "/images/icon/xampp-icon.svg",
+    icons: [
+      {
+        src: "/images/icon/xampp-icon.svg",
+        label: "XAMPP"
+      },
+      {
+        src: "/images/icon/php-icon.svg",
+        label: "PHP"
+      }
+    ],
     role: "Dynamic Web Application Backend Development",
     startYear: "2021",
     endYear: "2025",
@@ -68,19 +95,53 @@ const experienceData = [
     ]
   },
   {
-    icon: "/images/icon/typescript-icon.svg",
+    icons: [
+      {
+        src: "/images/icon/typescript-icon.svg",
+        label: "TypeScript"
+      }
+    ],
     role: "Enterprise-Level Project Development",
     startYear: "2025",
     endYear: "Present",
     bulletPoints: [
       "Actively learning TypeScript to build client-side solutions for interactive and real-time features."
     ]
+  },
+  {
+    icons: [
+      {
+        src: "/images/icon/opencv-icon.svg",
+        label: "OpenCV"
+      },
+      {
+        src: "/images/icon/python-icon.svg",
+        label: "Python"
+      },
+      {
+        src: "/images/icon/pytorch-icon.svg",
+        label: "PyTorch"
+      },
+      {
+        src: "/images/icon/fastapi-icon.svg",
+        label: "FastAPI"
+      }
+    ],
+    role: "Computer Vision & AI System Development",
+    startYear: "2026",
+    endYear: "Present",
+    bulletPoints: [
+      "Engineered a real-time AI proctoring system using OpenCV, PyTorch, and YOLO.",
+      "Designed gaze tracking and head pose estimation for behavioral analysis.",
+      "Developed a rule-based risk engine for detecting suspicious patterns.",
+      "Built a FastAPI + WebSocket backend for real-time monitoring."
+    ]
   }
 ]
 
 const educationData = [
   {
-    startYear: "2022",
+    startYear: "",
     endYear: "2022",
     title: "Matriculation (CBSE)",
     subtitle: "Open Minds - A Birla School — Patna, India",
@@ -109,7 +170,9 @@ const communicationMethods = [
   { name: "Instagram", url: "https://instagram.com/tanmaysinhx14", 
     icon: "/images/icon/instagram-icon.svg" },
   { name: "Snapchat", url: "https://snapchat.com/add/tanmaysinhx_14", 
-    icon: "/images/icon/snapchat-icon.svg" }
+    icon: "/images/icon/snapchat-icon.svg" },
+  { name: "Spotify", url: "https://open.spotify.com/user/31bayf77ivq6iq3lpquebal3rysa?si=b6241cee5a66464f", 
+    icon: "/images/icon/spotify-icon.svg" }
 ]
 
 export const GET = async () => {

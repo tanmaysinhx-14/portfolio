@@ -2,11 +2,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
 const inter = Inter({
+  display: "swap",
   variable: "--font-inter-sans",
   subsets: ["latin"],
 });
@@ -27,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans`}>
+      <body className={`${inter.variable} ${inter.className}`}>
         <Header />
         {children}
         <Footer />
