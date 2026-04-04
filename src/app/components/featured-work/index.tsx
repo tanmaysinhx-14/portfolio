@@ -1,57 +1,32 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-type FeatureWorkItem = {
-  description: string;
-  image: string;
-  link?: string | null;
-  techStack: string[];
-  title: string;
+import type { FeaturedWorkItem } from "@/data/portfolio";
+
+type FeaturedWorkProps = {
+  projects: FeaturedWorkItem[];
 };
 
-const FeaturedWork = () => {
-  const [featureWork, setFeatureWork] = useState<FeatureWorkItem[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/featured-work");
-
-        if (!res.ok) {
-          throw new Error("Failed to fetch");
-        }
-
-        const data = await res.json();
-        setFeatureWork(data?.featureWork ?? []);
-      } catch (error) {
-        console.error("Error fetching featured work:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const FeaturedWork = ({ projects }: FeaturedWorkProps) => {
   return (
-    <section>
+    <section id="work">
       <div className="container portfolio-container">
         <div className="panel-frame">
-          <div className="section-content">
-            <p className="section-heading section-heading-spaced">Featured Work</p>
+          <div className="section-content d-flex flex-column gap-3">
+            <p className="section-heading">Featured Work</p>
+            <h2 className="mb-0 featured-work-title">
+              A few projects that show how I think about systems, usability, and implementation.
+            </h2>
           </div>
 
           <div className="work-grid">
             <div className="row g-0">
-              {featureWork.map((value, index) => {
+              {projects.map((value) => {
                 const projectHref = value.link || "#";
 
                 return (
-                  <div key={`${value.title}-${index}`} className="col-12 col-md-6">
-                    <div
-                      className={`work-card h-100 d-flex flex-column gap-4`}
-                    >
+                  <div key={value.title} className="col-12 col-md-6">
+                    <div className="work-card h-100 d-flex flex-column gap-4">
                       <Link
                         href={projectHref}
                         target={value.link ? "_blank" : undefined}

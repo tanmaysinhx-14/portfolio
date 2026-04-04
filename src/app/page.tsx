@@ -1,28 +1,30 @@
-import Divider from "../components/ui/divider"
-import AboutMe from "./components/about-me"
-import Education from "./components/education"
-import Experience from "./components/experience"
-import FeaturedWork from "./components/featured-work"
-import HeroSection from "./components/hero-section"
-import CommunicationMethods from "./components/communication-methods"
+import AboutMe from "./components/about-me";
+import CommunicationMethods from "./components/communication-methods";
+import Education from "./components/education";
+import Experience from "./components/experience";
+import FeaturedWork from "./components/featured-work";
+import HeroSection from "./components/hero-section";
 
-const page = () => {
+import {
+  aboutData,
+  contactData,
+  educationData,
+  experienceData,
+  featuredWork,
+  heroData,
+} from "@/data/portfolio";
+
+const Page = () => {
   return (
-    <main>
-      <HeroSection/>
-      <Divider/>
-      <AboutMe/>
-      <Divider/>
-      <FeaturedWork/>
-      <Divider/>
-      <Experience/>
-      <Divider/>
-      <Education/>
-      <Divider/>
-      <CommunicationMethods/>
-      <Divider/>
+    <main className="portfolio-main">
+      <HeroSection hero={heroData} />
+      <AboutMe about={aboutData} />
+      <FeaturedWork projects={featuredWork} />
+      <Experience experience={experienceData} />
+      <Education education={educationData} />
+      <CommunicationMethods contact={contactData} />
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

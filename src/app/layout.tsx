@@ -15,12 +15,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Portfolio",
+    default: "Tanmay - Digital Portfolio",
     template: "%s | Tanmay",
   },
-  description: "Portfolio - Tanmay",
+  description:
+    "Portfolio of Tanmay, a computer science student building AI systems and polished web products.",
 };
-
 
 export default function RootLayout({
   children,

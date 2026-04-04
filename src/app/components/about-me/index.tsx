@@ -1,57 +1,30 @@
-"use client";
+import type { AboutData } from "@/data/portfolio";
 
-import { useEffect, useState } from "react";
-
-type TagItem = {
-  title: string;
+type AboutMeProps = {
+  about: AboutData;
 };
 
-const AboutMe = () => {
-  const [activeDomains, setActiveDomains] = useState<TagItem[]>([]);
-  const [coreExpertise, setCoreExpertise] = useState<TagItem[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/page-data");
-
-        if (!res.ok) {
-          throw new Error("Failed to fetch");
-        }
-
-        const data = await res.json();
-        setActiveDomains(data?.activeDomains ?? []);
-        setCoreExpertise(data?.coreExpertise ?? []);
-      } catch (error) {
-        console.error("Error fetching about-me data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const AboutMe = ({ about }: AboutMeProps) => {
   return (
-    <section>
+    <section id="about">
       <div className="container portfolio-container">
         <div className="panel-frame about-surface">
           <div className="section-content-lg">
             <div className="d-flex flex-column gap-5">
               <div className="d-flex flex-column gap-4">
-                <p className="section-heading">About Me</p>
+                <p className="section-heading">About</p>
                 <h2 className="mb-0">
-                  Hey there. I&apos;m Tanmay, a Computer Science student based in
-                  Chennai, currently{" "}
-                  <span className="highlight-sweep">
-                    building production-grade digital applications,
-                  </span>{" "}
-                  with a strong emphasis on scalability and intuitive design.
+                  {about.intro}{" "}
+                  <span className="highlight-sweep">{about.highlight}</span>{" "}
+                  {about.headline}
                 </h2>
+                <p className="about-copy">{about.focusSummary}</p>
               </div>
 
               <div className="d-flex flex-column gap-3">
-                <p className="section-heading">Currently Active In</p>
+                <p className="section-heading">Current Focus</p>
                 <div className="d-flex flex-wrap gap-2 gap-sm-3">
-                  {activeDomains.map((item) => (
+                  {about.activeDomains.map((item) => (
                     <span key={item.title} className="portfolio-chip">
                       {item.title}
                     </span>
@@ -60,9 +33,9 @@ const AboutMe = () => {
               </div>
 
               <div className="d-flex flex-column gap-3">
-                <p className="section-heading">Core Expertise</p>
+                <p className="section-heading">Strengths</p>
                 <div className="d-flex flex-wrap gap-2 gap-sm-3">
-                  {coreExpertise.map((item) => (
+                  {about.coreExpertise.map((item) => (
                     <span key={item.title} className="portfolio-chip">
                       {item.title}
                     </span>

@@ -1,47 +1,23 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-type HeroSocialIcon = {
-  href: string;
-  icon: string;
-  label: string;
+import type { HeroData } from "@/data/portfolio";
+
+type HeroSectionProps = {
+  hero: HeroData;
 };
 
-const HeroSection = () => {
-  const [heroSocialIcon, setHeroSocialIcon] = useState<HeroSocialIcon[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/page-data");
-
-        if (!res.ok) {
-          throw new Error("Failed to fetch hero data");
-        }
-
-        const data = await res.json();
-        setHeroSocialIcon(data?.heroSocialIcon ?? []);
-      } catch (error) {
-        console.error("Error fetching hero social icons:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const HeroSection = ({ hero }: HeroSectionProps) => {
   return (
-    <section>
+    <section id="top">
       <div className="container portfolio-container">
         <div className="hero-banner">
           <Image
             src="/images/hero-sec/banner.png"
-            alt="banner"
+            alt="Abstract portfolio banner"
             width={1080}
             height={267}
-            className="w-100"
+            loading="eager"
           />
         </div>
 
@@ -55,26 +31,28 @@ const HeroSection = () => {
                 height={150}
                 className="hero-avatar rounded-circle"
               />
-              <span className="hero-status" />
             </div>
 
             <div className="row mt-1 g-4 align-items-start justify-content-between">
-              <div className="col col-md-auto">
+              <div className="col-12 col-lg-7">
                 <div className="d-flex flex-column gap-4 align-items-center align-items-sm-start text-center text-sm-start">
-                  <div className="d-flex flex-column gap-2">
-                    <h1 className="mb-0">Tanmay</h1>
-                    <p className="mb-0 hero-tagline">Exploring. Learning. Creating. ✨</p>
+                  <span className="availability-pill">{hero.availability}</span>
+
+                  <div className="d-flex flex-column gap-3">
+                    <h1 className="mb-0">{hero.name}</h1>
+                    <p className="mb-0 hero-summary">{hero.summary}</p>
                   </div>
 
-                  <div className="d-flex flex-column gap-2">
+                  <div className="d-flex flex-column gap-2 mb-3">
                     <div className="hero-meta">
                       <Image
                         src="/images/icon/educap-icon.svg"
                         alt="education"
                         width={20}
                         height={20}
+                        className="mt-1 me-2"
                       />
-                      <p className="mb-0">SRM Ramapuram</p>
+                      <p className="mb-0">{hero.school}</p>
                     </div>
 
                     <div className="hero-meta">
@@ -83,35 +61,42 @@ const HeroSection = () => {
                         alt="location"
                         width={20}
                         height={20}
+                        className="mt-1 me-2"
                       />
-                      <p className="mb-0">Chennai, India</p>
+                      <p className="mb-0">{hero.location}</p>
                     </div>
+                  </div>
+
+                  <div className="d-flex flex-wrap justify-content-center justify-content-sm-start gap-3">
+                    <Link href={hero.primaryCta.href} className="btn btn-dark hero-cta">
+                      {hero.primaryCta.label}
+                    </Link>
+                    <Link href="#contact" className="btn btn-primary hero-cta">
+                      Contact Me
+                    </Link>
                   </div>
                 </div>
               </div>
 
-              <div className="col-sm col-md-auto">
-                <div className="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-end gap-3">
-                  <div className="d-flex flex-wrap justify-content-center justify-content-lg-end gap-2 p-0">
-                    {heroSocialIcon.map((item) => (
+              <div className="col-12 col-lg-4">
+                <div className="d-flex flex-column gap-3 align-items-center align-items-lg-end">
+                  <p className="subcontent-heading mt-5">Profiles</p>
+
+                  <div className="d-flex flex-wrap justify-content-center justify-content-lg-end gap-3 p-0">
+                    {hero.socialLinks.map((item) => (
                       <Link
                         key={`${item.label}-${item.href}`}
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`icon-button ${
-                          item.label === "Email"
-                            ? "btn bg-dark p-2"
-                            : "btn btn-outline-dark p-1"
-                        }`}
                         aria-label={item.label}
                         title={item.label}
                       >
                         <Image
                           src={item.icon}
                           alt={item.label}
-                          width={50}
-                          height={50}
+                          width={40}
+                          height={40}
                         />
                       </Link>
                     ))}
