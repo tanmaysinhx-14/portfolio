@@ -1,45 +1,86 @@
-# 📃 Next.js Portfolio Project
+# Tanmay Portfolio
 
-Hi, I’m **Tanmay Sinha**, a Computer Science undergraduate with a strong interest in **frontend engineering and modern web development**.  
-I enjoy building clean, performant user interfaces and structuring applications the way they are built in real production environments.
+This repository contains my personal portfolio built with Next.js. It is designed to present my work in AI, computer vision, backend development, and polished front-end implementation through a clean, responsive single-page experience.
 
-This project is part of my personal portfolio and reflects how I approach **code quality, scalability, and developer experience** using Next.js.
+## Overview
 
----
+The portfolio highlights:
 
-## ℹ️ About This Project
+- a structured hero section with profile links and clear calls to action
+- featured projects with supporting descriptions and technology tags
+- an experience timeline focused on the stacks used during each phase
+- education details and professional contact options
+- a shared typed data layer that powers both the page and the API routes
 
-This portfolio project is built using **Next.js (App Router)** to demonstrate:
-- Practical understanding of modern React and Next.js concepts
-- Clean and maintainable project structure
-- Performance-oriented rendering decisions
-- Industry-standard frontend development practices
+## Tech Stack
 
----
+- Next.js 16 with the App Router
+- React 19
+- TypeScript
+- Bootstrap 5
+- Custom global CSS
+- `next/font` with Inter
+- Vercel Analytics and Speed Insights
 
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js (App Router)
-- **Language:** TypeScript
-- **Styling:** CSS Modules / Tailwind CSS
-- **Fonts:** `next/font` (Inter)
-- **Runtime:** Node.js
-- **Deployment:** Vercel
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```txt
-├── app/
-│   ├── page.tsx          # Home page
-│   ├── layout.tsx        # Root layout
-│   ├── globals.css       # Global styles
-│   └── loading.tsx       # Route loading state
-├── components/           # Reusable UI components
-├── lib/                  # Utilities & helpers
-├── public/               # Static assets
-├── styles/               # Styling configuration
-├── next.config.js
-├── package.json
-└── README.md
+src/
+  app/
+    api/
+      featured-work/route.ts
+      page-data/route.ts
+    components/
+      about-me/
+      communication-methods/
+      education/
+      experience/
+      featured-work/
+      footer/
+      header/
+      hero-section/
+    globals.css
+    layout.tsx
+    page.tsx
+  data/
+    portfolio.ts
+public/
+  images/
+    feature-work/
+    hero-sec/
+    icon/
+```
+
+## Content Source
+
+Most portfolio copy and structured content live in [`src/data/portfolio.ts`](src/data/portfolio.ts). This keeps the visible content consistent across:
+
+- the main page components
+- the internal API routes
+- shared labels, links, and section data
+
+## Local Development
+
+Install dependencies and run the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Validation
+
+Useful commands:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Notes
+
+- Images and icons are stored in `public/images`.
+- The portfolio is deployed on Vercel.
+- Content and layout are optimized for both desktop and mobile viewing.

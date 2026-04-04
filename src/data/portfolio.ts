@@ -80,8 +80,8 @@ export const heroData: HeroData = {
   name: "Tanmay",
   summary:
     "I enjoy turning messy workflows into practical tools, especially where computer vision, backend logic, and product design intersect.",
-  availability: "Open to Collaborative Product Work",
-  school: "B.Tech, Computer Science - SRM Institute of Science and Technology",
+  availability: "Open to collaborative product work",
+  school: "B.Tech in Computer Science Engineering, SRM Institute of Science and Technology",
   location: "Chennai, India",
   primaryCta: { href: "#work", label: "View Projects" },
   socialLinks: [
@@ -113,11 +113,11 @@ export const aboutData: AboutData = {
   activeDomains: [
     { title: "Computer Vision with OpenCV and MediaPipe" },
     { title: "Machine Learning Workflows with PyTorch" },
-    { title: "TypeScript-based Web Applications" },
+    { title: "TypeScript-Based Web Applications" },
     { title: "PHP and MySQL Backend Systems" },
   ],
   coreExpertise: [
-    { title: "Product-focused UI Implementation" },
+    { title: "Product-Focused UI Implementation" },
     { title: "Bootstrap 5 and Responsive Layout Systems" },
     { title: "Backend Logic and Data Flow Design" },
   ],
@@ -135,9 +135,9 @@ export const featuredWork: FeaturedWorkItem[] = [
   {
     title: "Career Institute Website",
     description:
-      "Designed and developed a conversion-focused institute website with clearer information hierarchy, responsive layouts, and a more polished Bootstrap-based front end. The project emphasized presentation quality, speed, and trust-building design.",
+      "Designed and developed a conversion-focused institute website with clearer information hierarchy, responsive layouts, and a more polished Bootstrap-based front-end experience. The project emphasized presentation quality, speed, and trust-building design.",
     link: "https://github.com/tanmaysinhx-14/career-institute",
-    techStack: ["Bootstrap 5", "UI implementation", "Responsive design"],
+    techStack: ["Bootstrap 5", "UI Implementation", "Responsive Design"],
     image: "/images/feature-work/ci-img.png",
   },
   {
@@ -145,7 +145,7 @@ export const featuredWork: FeaturedWorkItem[] = [
     description:
       "Created a QR-driven attendance workflow that reduces manual entry and speeds up classroom check-ins. I built the validation flow and backend logic so attendance could be recorded quickly with better reliability and less friction.",
     link: "https://github.com/tanmaysinhx-14/attendance-system",
-    techStack: ["TypeScript", "PHP", "Workflow automation"],
+    techStack: ["TypeScript", "PHP", "Workflow Automation"],
     image: "/images/feature-work/scan.jpg",
   },
 ];
@@ -174,7 +174,7 @@ export const experienceData: ExperienceItem[] = [
     startYear: "2025",
     endYear: "Present",
     bulletPoints: [
-      "Using TypeScript to build more maintainable front-end features with stronger typing and clearer component structure.",
+      "Building more maintainable front-end features with TypeScript, stronger typing, and clearer component structure.",
       "Improving interactive product flows while learning how to scale UI code with better architecture and state handling.",
     ],
   },
@@ -215,21 +215,21 @@ export const educationData: EducationItem[] = [
   {
     startYear: "2022",
     endYear: "2024",
-    title: "CBSE - Intermediate",
+    title: "Intermediate (CBSE)",
     subtitle: "Private Candidate",
   },
   {
     startYear: "",
     endYear: "2022",
-    title: "CBSE - Matriculation",
-    subtitle: "Open Minds - A Birla School, Patna",
+    title: "Matriculation (CBSE)",
+    subtitle: "Open Minds - A Birla School, Patna, India",
   },
 ];
 
 export const contactData: ContactData = {
   heading: "Open to product collaborations and thoughtful technical conversations.",
   description:
-    "If you are building in AI, backend systems, or polished web experiences, I would be glad to connect and see where I can contribute.",
+    "If you are building in AI, backend systems, or polished web experiences, I would be glad to connect and explore how I can contribute.",
   primaryCta: {
     icon: "/images/icon/mail-icon.svg",
     href: "mailto:mail.tanmaysinha@gmail.com",
@@ -265,7 +265,7 @@ export const contactData: ContactData = {
 };
 
 export const footerData = {
-  note: "Built with Next.js and Bootstrap. Hosted by Vercel and Hostinger.",
+  note: "Built with Next.js and Bootstrap. Deployed on Vercel.",
 };
 
 export const pageData = {

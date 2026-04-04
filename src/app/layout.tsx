@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Tanmay",
   },
   description:
-    "Portfolio of Tanmay, a computer science student building AI systems and polished web products.",
+    "Portfolio of Tanmay, a Computer Science student building AI systems and polished web products.",
 };
 
 export default function RootLayout({
