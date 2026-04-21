@@ -4,6 +4,6 @@ import { featuredWork } from "@/data/portfolio";
 
 export const GET = async () => {
   return NextResponse.json({
-    featureWork: featuredWork,
+    featuredWork,
   });
 };

@@ -30,7 +30,7 @@ const CommunicationMethods = ({ contact }: CommunicationMethodsProps) => {
                     <Link
                       href={contact.secondaryCta.href}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="btn btn-outline-dark hero-cta"
                     >
                       {contact.secondaryCta.label}
@@ -46,7 +46,11 @@ const CommunicationMethods = ({ contact }: CommunicationMethodsProps) => {
                       <Link
                         href={value.href}
                         target={value.href.startsWith("http") ? "_blank" : undefined}
-                        rel={value.href.startsWith("http") ? "noreferrer" : undefined}
+                        rel={
+                          value.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="social-tile w-100 justify-content-between text-decoration-none"
                       >
                         <span className="d-inline-flex align-items-center gap-2">

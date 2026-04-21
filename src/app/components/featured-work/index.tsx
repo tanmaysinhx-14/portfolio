@@ -30,7 +30,7 @@ const FeaturedWork = ({ projects }: FeaturedWorkProps) => {
                       <Link
                         href={projectHref}
                         target={value.link ? "_blank" : undefined}
-                        rel={value.link ? "noreferrer" : undefined}
+                        rel={value.link ? "noopener noreferrer" : undefined}
                         className="project-image-link"
                       >
                         <Image
@@ -46,7 +46,7 @@ const FeaturedWork = ({ projects }: FeaturedWorkProps) => {
                         <Link
                           href={projectHref}
                           target={value.link ? "_blank" : undefined}
-                          rel={value.link ? "noreferrer" : undefined}
+                          rel={value.link ? "noopener noreferrer" : undefined}
                           className="project-title-link text-decoration-none"
                         >
                           <h4 className="mb-0">{value.title}</h4>

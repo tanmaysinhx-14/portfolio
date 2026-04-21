@@ -15,8 +15,9 @@
   --portfolio-shadow: 0 1rem 3rem rgba(28, 33, 43, 0.06);
   --portfolio-shadow-soft: 0 1rem 2rem rgba(28, 33, 43, 0.05);
   --portfolio-accent: #5b3cc4;
+  --portfolio-focus-ring: rgba(91, 60, 196, 0.26);
   --portfolio-motion-smooth: 0.42s cubic-bezier(0.22, 1, 0.36, 1);
-  --bs-body-font-family: var(--font-inter-sans), Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bs-body-font-family: "Inter Variable", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --bs-body-bg: #ffffff;
   --bs-body-color: var(--portfolio-secondary);
   --bs-primary: #1c212b;
@@ -220,6 +221,19 @@ h5 {
 .site-nav-link:hover {
   background: rgba(28, 33, 43, 0.05);
   transform: translateY(-1px);
+}
+
+.site-nav-link:focus-visible,
+.site-header-cta:focus-visible,
+.site-menu-toggle:focus-visible,
+.site-mobile-nav-link:focus-visible,
+.icon-button:focus-visible,
+.hero-cta:focus-visible,
+.project-image-link:focus-visible,
+.project-title-link:focus-visible,
+.social-tile:focus-visible {
+  outline: 2px solid var(--portfolio-focus-ring);
+  outline-offset: 3px;
 }
 
 .availability-pill {
@@ -458,8 +472,8 @@ h5 {
 }
 
 .hero-avatar {
-  width: 9.375rem;
-  height: 9.375rem;
+  width: inherit;
+  height: inherit;
   border: 4px solid #ffffff;
   object-fit: cover;
   box-shadow: 0 1.4rem 2.8rem rgba(28, 33, 43, 0.12);
@@ -486,6 +500,16 @@ h5 {
   max-width: 38rem;
   color: var(--portfolio-secondary);
   font-size: 1rem;
+}
+
+.hero-profile-link {
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 241, 0.95));
+}
+
+.hero-profile-icon {
+  width: inherit;
+  height: inherit;
 }
 
 .hero-meta {
@@ -548,13 +572,22 @@ h5 {
 }
 
 .work-card {
+  border: 1px solid transparent;
   border-radius: 1rem;
   padding: 1rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0 0 rgba(28, 33, 43, 0);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.work-card:hover {
-  background: rgba(28, 33, 43, 0.015);
+.work-card:hover,
+.work-card:focus-within {
+  border-color: var(--portfolio-border);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1.1rem 2.4rem rgba(28, 33, 43, 0.08);
   transform: translateY(-2px);
 }
 
@@ -563,6 +596,7 @@ h5 {
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: var(--portfolio-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .project-image {
@@ -573,7 +607,8 @@ h5 {
   transition: transform 0.35s ease;
 }
 
-.work-card:hover .project-image {
+.work-card:hover .project-image,
+.work-card:focus-within .project-image {
   transform: scale(1.1);
 }
 
@@ -593,6 +628,8 @@ h5 {
 }
 
 .work-card:hover .project-title-arrow,
+.work-card:focus-within .project-title-arrow,
+.project-title-link:focus-visible .project-title-arrow,
 .project-title-link:hover .project-title-arrow {
   transform: translateX(0.2rem) rotate(45deg);
 }
@@ -800,7 +837,8 @@ h5 {
   transition: transform 0.25s ease;
 }
 
-.social-tile:hover .social-tile-arrow {
+.social-tile:hover .social-tile-arrow,
+.social-tile:focus-visible .social-tile-arrow {
   transform: translateX(0.2rem) rotate(45deg);
 }
 
@@ -832,6 +870,21 @@ h5 {
 
   100% {
     box-shadow: 0 0 0 0 rgba(28, 33, 43, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -952,7 +1005,7 @@ h5 {
 
   .site-header.is-condensed .site-brand-wrap {
     left: 50%;
-    max-width: min(16rem, calc(100% - 2rem));
+    max-width: min(16rem, calc(100% - 5.25rem));
     max-height: 3.5rem;
     opacity: 1;
     pointer-events: auto;
@@ -965,9 +1018,9 @@ h5 {
   }
 
   .site-header.is-condensed .site-menu-toggle {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.82);
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(0.94);
   }
 }
 

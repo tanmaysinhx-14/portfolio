@@ -90,13 +90,15 @@ const HeroSection = ({ hero }: HeroSectionProps) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={item.label}
+                        className="icon-button hero-profile-link text-decoration-none"
                         title={item.label}
                       >
                         <Image
                           src={item.icon}
-                          alt={item.label}
-                          width={40}
-                          height={40}
+                          alt=""
+                          width={22}
+                          height={22}
+                          className="hero-profile-icon"
                         />
                       </Link>
                     ))}
