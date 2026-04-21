@@ -40,7 +40,7 @@ const CommunicationMethods = ({ contact }: CommunicationMethodsProps) => {
               </div>
 
               <div className="col-12 col-lg-7 pt-lg-5">
-                <div className="row row-cols-2 row-cols-sm-2 g-3">
+                <div className="row row-cols-1 row-cols-md-2 g-3">
                   {contact.links.map((value) => (
                     <div key={value.href} className="col">
                       <Link

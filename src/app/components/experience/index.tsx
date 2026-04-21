@@ -32,9 +32,9 @@ const Experience = ({ experience }: ExperienceProps) => {
                           <Image
                             src={icon.src}
                             alt={icon.label}
-                            width={28}
-                            height={28}
-                            className="experience-icon-image"
+                            width={48}
+                            height={48}
+                            className="experience-icon-image rounded-3"
                           />
                         </div>
                       ))}
