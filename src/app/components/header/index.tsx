@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { navigationLinks } from "@/data/portfolio";
 
@@ -10,15 +10,13 @@ const DESKTOP_BREAKPOINT = 768;
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCondensed, setIsCondensed] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const nextIsCondensed = window.scrollY > 24;
       setIsCondensed(nextIsCondensed);
-
-      if (nextIsCondensed) {
-        setIsMenuOpen(false);
-      }
     };
 
     const handleResize = () => {
@@ -38,6 +36,64 @@ const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    const shouldShowOverlay = isMenuOpen && window.innerWidth < DESKTOP_BREAKPOINT;
+
+    if (shouldShowOverlay) {
+      const scrollbarOffset = Math.max(
+        0,
+        window.innerWidth - document.documentElement.clientWidth
+      );
+
+      document.body.style.setProperty("--scroll-lock-offset", `${scrollbarOffset}px`);
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+      document.body.style.removeProperty("--scroll-lock-offset");
+    }
+
+    return () => {
+      document.body.classList.remove("mobile-menu-open");
+      document.body.style.removeProperty("--scroll-lock-offset");
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+
+      if (!target) {
+        return;
+      }
+
+      if (menuRef.current?.contains(target) || toggleRef.current?.contains(target)) {
+        return;
+      }
+
+      setIsMenuOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown, { passive: true });
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -86,6 +142,7 @@ const Header = () => {
           </div>
 
           <button
+            ref={toggleRef}
             type="button"
             className="site-menu-toggle"
             aria-expanded={isMenuOpen}
@@ -99,7 +156,7 @@ const Header = () => {
           </button>
         </div>
 
-        <div id="site-mobile-menu" className="site-mobile-menu">
+        <div id="site-mobile-menu" ref={menuRef} className="site-mobile-menu">
           <nav className="site-mobile-nav" aria-label="Mobile">
             {navigationLinks.map((item) => (
               <Link

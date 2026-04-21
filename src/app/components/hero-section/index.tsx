@@ -27,8 +27,8 @@ const HeroSection = ({ hero }: HeroSectionProps) => {
               <Image
                 src="/images/hero-sec/user.jpg"
                 alt="Tanmay"
-                width={150}
-                height={150}
+                width={160}
+                height={160}
                 className="hero-avatar rounded-circle"
               />
             </div>
@@ -96,8 +96,8 @@ const HeroSection = ({ hero }: HeroSectionProps) => {
                         <Image
                           src={item.icon}
                           alt=""
-                          width={22}
-                          height={22}
+                          width={20}
+                          height={20}
                           className="hero-profile-icon"
                         />
                       </Link>
